@@ -244,7 +244,6 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     ev3.Sound.beep().wait()
 
 
-
 def spin_right_seconds(seconds, speed, stop_action):
     """ Calls spin_left_seconds with negative speeds to achieve spin_right motion. """
     spin_left_seconds(seconds, -speed, stop_action)
