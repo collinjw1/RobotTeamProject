@@ -12,7 +12,6 @@ Authors: David Fisher, David Mutchler and Isaiah Jolly.
 
 import ev3dev.ev3 as ev3
 import time
-from
 
 
 def test_spin_left_spin_right():
