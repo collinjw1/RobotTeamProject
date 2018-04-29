@@ -3,7 +3,7 @@ Functions for SPINNING the robot LEFT and RIGHT.
 Authors: David Fisher, David Mutchler and Isaiah Jolly.
 """  # Isaiah Jolly: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implment spin_left_seconds, then the relevant part of the test function.
+# TODO: 2. Implement spin_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for spin_left_by_time.
 #   Then repeat for spin_left_by_encoders.
@@ -43,6 +43,13 @@ def spin_left_seconds(seconds, speed, stop_action):
     assert left_motor.connected
     assert right_motor.connected
 
+    left_motor.run_forever(speed_sp=-speed * 8)
+    right_motor.run_forever(speed_sp=speed * 8)
+    time.sleep(seconds)
+    left_motor.stop(stop_action=stop_action)
+    right_motor.stop(stop_action=stop_action)
+    ev3.Sound.beep().wait()
+
 
 def spin_left_by_time(degrees, speed, stop_action):
     """
@@ -55,6 +62,23 @@ def spin_left_by_time(degrees, speed, stop_action):
       3. Stop moving.
     """
 
+    robot_speed = 4 * (speed / 360)
+    omega_robot = robot_speed / 3.25
+    time = degrees / omega_robot
+
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
+    left_motor.run_forever(speed_sp=-speed)
+    right_motor.run_forever(speed_sp=speed)
+    time.sleep(time)
+    left_motor.stop(stop_action=stop_action)
+    right_motor.stop(stop_action=stop_action)
+    ev3.Sound.beep().wait()
+
 
 def spin_left_by_encoders(degrees, speed, stop_action):
     """
@@ -65,17 +89,39 @@ def spin_left_by_encoders(degrees, speed, stop_action):
       2. Move until the computed number of degrees is reached.
     """
 
+    robot_speed = 4 * (speed / 360)
+    omega_robot = robot_speed / 3.25
+    time = degrees / omega_robot
+    wheel_degrees = speed * time
+
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
+    left_motor.run_to_rel_pos(position_sp=-wheel_degrees)
+    right_motor.run_to_rel_pos(position_sp=wheel_degrees)
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    left_motor.stop(stop_action=stop_action)
+    right_motor.stopp(stop_action=stop_action)
+    ev3.Sound.beep().wait()
+
+
 
 def spin_right_seconds(seconds, speed, stop_action):
     """ Calls spin_left_seconds with negative speeds to achieve spin_right motion. """
+    spin_left_seconds(seconds, -speed, stop_action)
 
 
 def spin_right_by_time(degrees, speed, stop_action):
     """ Calls spin_left_by_time with negative speeds to achieve spin_right motion. """
+    spin_left_by_time(degrees, -speed, stop_action)
 
 
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
+    spin_left_by_encoders(degrees, speed, stop_action)
 
 
 test_spin_left_spin_right()
