@@ -36,10 +36,10 @@ def test_spin_left_spin_right():
 
     while True:
         seconds = int(input('Enter a number of seconds to travel for: '))
-        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
@@ -58,10 +58,10 @@ def test_spin_left_spin_right():
 
     while True:
         degrees = int(input('Enter a number of degrees for the robot to spin: '))
-        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if degrees == 0:
             break
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
@@ -80,10 +80,10 @@ def test_spin_left_spin_right():
 
     while True:
         degrees = int(input('Enter a number of degrees to rotate by: '))
-        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if degrees == 0:
             break
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
@@ -102,10 +102,10 @@ def test_spin_left_spin_right():
 
     while True:
         seconds = int(input('Enter a number of seconds to travel for: '))
-        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
@@ -124,10 +124,10 @@ def test_spin_left_spin_right():
 
     while True:
         degrees = int(input('Enter a number of degrees for the robot to rotate: '))
-        speed = int(input('Enter a number between -100 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if degrees == 0:
             break
+        speed = int(input('Enter a number between -100 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
@@ -146,10 +146,10 @@ def test_spin_left_spin_right():
 
     while True:
         degrees = int(input('Enter a number of degrees for the robot to rotate by: '))
-        speed = int(input('Enter a number between -100 and 100: '))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if degrees == 0:
             break
+        speed = int(input('Enter a number between -100 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
