@@ -31,15 +31,17 @@ def test_spin_left_spin_right():
     """
     # Testing spin_left_seconds:
 
-    print('Testing of spin_left_seconds is starting!')
+    print('** Testing of spin_left_seconds is starting **')
+    print()
+
     while True:
         seconds = int(input('Enter a number of seconds to travel for: '))
         speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
-        stop_action = str(input('Enter a stop action for the robot (brake, coast, or hold): '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
@@ -50,15 +52,18 @@ def test_spin_left_spin_right():
 
     # Testing spin_left_by_time:
 
-    print('Testing of spin_left_by_time is starting!')
+    print()
+    print('** Testing of spin_left_by_time is starting **')
+    print()
+
     while True:
         degrees = int(input('Enter a number of degrees for the robot to spin: '))
-        speed = int(input('Enter a number between 0 and 100: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
@@ -69,15 +74,18 @@ def test_spin_left_spin_right():
 
     # Testing spin_left_by_encoders:
 
-    print('Testing of spin_left_by_encoders is starting!')
+    print()
+    print('** Testing of spin_left_by_encoders is starting **')
+    print()
+
     while True:
-        degrees = int(input('Enter a number of degrees to rotate by:'))
-        speed = int(input('Enter a number between 0 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        degrees = int(input('Enter a number of degrees to rotate by: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
@@ -88,15 +96,18 @@ def test_spin_left_spin_right():
 
     # Testing spin_right_seconds:
 
-    print('Testing of spin_right_seconds is starting!')
+    print()
+    print('** Testing of spin_right_seconds is starting **')
+    print()
+
     while True:
-        seconds = int(input('Enter a number of seconds to travel for:'))
-        speed = int(input('Enter a number between -100 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        seconds = int(input('Enter a number of seconds to travel for: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
@@ -107,41 +118,50 @@ def test_spin_left_spin_right():
 
     # Testing spin_right_by_time:
 
-    print('Testing of sping_right_by_time is starting!')
+    print()
+    print('** Testing of spin_right_by_time is starting **')
+    print()
+
     while True:
-        seconds = int(input('Enter a number of seconds to travel for:'))
-        speed = int(input('Enter a number between -100 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        degrees = int(input('Enter a number of degrees for the robot to rotate: '))
+        speed = int(input('Enter a number between -100 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
         else:
             stop_action = ev3.Motor.STOP_ACTION_HOLD
 
-        spin_right_by_time(seconds, speed, stop_action)
+        spin_right_by_time(degrees, speed, stop_action)
 
     # Testing spin_right_by_encoders:
 
-    print('Testing of spin_right_by_encoders is starting!')
+    print()
+    print('** Testing of spin_right_by_encoders is starting **')
+    print()
+
     while True:
-        seconds = int(input('Enter a number of seconds to travel for:'))
-        speed = int(input('Enter a number between -100 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        degrees = int(input('Enter a number of degrees for the robot to rotate by: '))
+        speed = int(input('Enter a number between -100 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
-        if stop_action == 'break':
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
         else:
             stop_action = ev3.Motor.STOP_ACTION_HOLD
 
-        spin_right_by_encoders(seconds, speed, stop_action)
+        spin_right_by_encoders(degrees, speed, stop_action)
+
+    print()
+    print('Testing has ended.')
 
 
 def spin_left_seconds(seconds, speed, stop_action):
