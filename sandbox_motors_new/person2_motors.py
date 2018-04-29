@@ -12,6 +12,7 @@ Authors: David Fisher, David Mutchler and Isaiah Jolly.
 
 import ev3dev.ev3 as ev3
 import time
+from
 
 
 def test_spin_left_spin_right():
@@ -32,9 +33,9 @@ def test_spin_left_spin_right():
 
     print('Testing of spin_left_seconds is starting!')
     while True:
-        seconds = int(input('Enter a number of seconds to travel for:'))
-        speed = int(input('Enter a number between 0 and 100:'))
-        stop_action = str(input('Enter a stop action for the robot (brake, coast, or hold):'))
+        seconds = int(input('Enter a number of seconds to travel for: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action for the robot (brake, coast, or hold): '))
         if seconds == 0:
             break
 
@@ -51,9 +52,9 @@ def test_spin_left_spin_right():
 
     print('Testing of spin_left_by_time is starting!')
     while True:
-        seconds = int(input('Enter a number of seconds to travel for:'))
-        speed = int(input('Enter a number between 0 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        degrees = int(input('Enter a number of degrees for the robot to spin: '))
+        speed = int(input('Enter a number between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
         if seconds == 0:
             break
 
@@ -64,7 +65,7 @@ def test_spin_left_spin_right():
         else:
             stop_action = ev3.Motor.STOP_ACTION_HOLD
 
-        spin_left_by_time(seconds, speed, stop_action)
+        spin_left_by_time(degrees, speed, stop_action)
 
     # Testing spin_left_by_encoders:
 
@@ -150,8 +151,8 @@ def spin_left_seconds(seconds, speed, stop_action):
     Uses the given stop_action.
     """
 
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     assert left_motor.connected
     assert right_motor.connected
@@ -179,8 +180,8 @@ def spin_left_by_time(degrees, speed, stop_action):
     omega_robot = robot_speed / 3.25
     time = degrees / omega_robot
 
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     assert left_motor.connected
     assert right_motor.connected
@@ -207,8 +208,8 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     time = degrees / omega_robot
     wheel_degrees = speed * time
 
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     assert left_motor.connected
     assert right_motor.connected
