@@ -199,7 +199,7 @@ def spin_left_by_time(degrees, speed, stop_action):
     radians = math.pi * (degrees / 180)
     robot_speed = 4 * (speed / 360)
     omega_robot = robot_speed / 3.25
-    time = radians / omega_robot
+    sleep_time = radians / omega_robot
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
@@ -209,7 +209,7 @@ def spin_left_by_time(degrees, speed, stop_action):
 
     left_motor.run_forever(speed_sp=-speed * 8)
     right_motor.run_forever(speed_sp=speed * 8)
-    time.sleep(time)
+    time.sleep(sleep_time)
     left_motor.stop(stop_action=stop_action)
     right_motor.stop(stop_action=stop_action)
     ev3.Sound.beep().wait()
@@ -227,8 +227,8 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     radians = math.pi * (degrees / 180)
     robot_speed = 4 * (speed / 360)
     omega_robot = robot_speed / 3.25
-    time = radians / omega_robot
-    wheel_degrees = speed * time
+    rotate_time = radians / omega_robot
+    wheel_degrees = speed * rotate_time
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
