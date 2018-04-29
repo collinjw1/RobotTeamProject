@@ -3,7 +3,7 @@ Functions for SPINNING the robot LEFT and RIGHT.
 Authors: David Fisher, David Mutchler and Isaiah Jolly.
 """  # Isaiah Jolly: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implement spin_left_seconds, then the relevant part of the test function.
+# DONE: 2. Implement spin_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for spin_left_by_time.
 #   Then repeat for spin_left_by_encoders.
@@ -34,7 +34,7 @@ def test_spin_left_spin_right():
     while True:
         seconds = int(input('Enter a number of seconds to travel for:'))
         speed = int(input('Enter a number between 0 and 100:'))
-        stop_action = str(input('Enter a stop action (brake, coast, or hold):'))
+        stop_action = str(input('Enter a stop action for the robot (brake, coast, or hold):'))
         if seconds == 0:
             break
 
