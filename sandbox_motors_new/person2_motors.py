@@ -197,9 +197,9 @@ def spin_left_by_time(degrees, speed, stop_action):
     """
 
     radians = math.pi * (degrees / 180)
-    robot_speed = 4 * (speed / 360)
+    robot_speed = 4 * ((speed * 8) / 360)
     omega_robot = robot_speed / 3.25
-    sleep_time = radians / omega_robot
+    sleep_time = (radians / omega_robot)
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
