@@ -12,6 +12,7 @@ Authors: David Fisher, David Mutchler and Isaiah Jolly.
 
 import ev3dev.ev3 as ev3
 import time
+import math
 
 
 def test_spin_left_spin_right():
@@ -195,9 +196,10 @@ def spin_left_by_time(degrees, speed, stop_action):
       3. Stop moving.
     """
 
+    radians = math.pi * (degrees / 180)
     robot_speed = 4 * (speed / 360)
     omega_robot = robot_speed / 3.25
-    time = degrees / omega_robot
+    time = radians / omega_robot
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
@@ -222,9 +224,10 @@ def spin_left_by_encoders(degrees, speed, stop_action):
       2. Move until the computed number of degrees is reached.
     """
 
-    robot_speed = 4 * ((speed * 8) / 360)
+    radians = math.pi * (degrees / 180)
+    robot_speed = 4 * (speed / 360)
     omega_robot = robot_speed / 3.25
-    time = degrees / omega_robot
+    time = radians / omega_robot
     wheel_degrees = speed * time
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
@@ -237,7 +240,7 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     right_motor.run_to_rel_pos(position_sp=wheel_degrees)
     left_motor.wait_while(ev3.Motor.STATE_RUNNING)
     left_motor.stop(stop_action=stop_action)
-    right_motor.stopp(stop_action=stop_action)
+    right_motor.stop(stop_action=stop_action)
     ev3.Sound.beep().wait()
 
 
