@@ -238,8 +238,7 @@ def spin_left_by_encoders(degrees, speed, stop_action):
 
     left_motor.run_to_rel_pos(position_sp=-wheel_degrees)
     right_motor.run_to_rel_pos(position_sp=wheel_degrees)
-    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
-    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    time.sleep(rotate_time)
     left_motor.stop(stop_action=stop_action)
     right_motor.stop(stop_action=stop_action)
     ev3.Sound.beep().wait()
