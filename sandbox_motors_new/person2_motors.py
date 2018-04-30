@@ -236,9 +236,9 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     assert left_motor.connected
     assert right_motor.connected
 
-    left_motor.run_to_rel_pos(position_sp=-wheel_degrees)
-    right_motor.run_to_rel_pos(position_sp=wheel_degrees)
-    time.sleep(rotate_time)
+    left_motor.run_to_rel_pos(position_sp=-wheel_degrees, speed_sp=-speed)
+    right_motor.run_to_rel_pos(position_sp=wheel_degrees, speed_sp=speed)
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
     left_motor.stop(stop_action=stop_action)
     right_motor.stop(stop_action=stop_action)
     ev3.Sound.beep().wait()
