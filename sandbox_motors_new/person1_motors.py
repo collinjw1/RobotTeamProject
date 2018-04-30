@@ -28,10 +28,22 @@ def test_forward_backward():
       3. Same as #2, but runs forward_by_encoders.
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
-    seconds_to_travel=input('Seconds to travel:')
-    speed=input('Speed(-100 to 100):')
-    stop_action=input('Stop Action:')
-    forward_seconds(seconds_to_travel,speed,stop_action)
+    while True:
+        seconds_to_travel=int(input('Seconds to travel:'))
+        if seconds_to_travel == 0:
+            break
+        speed=int(input('Speed(-100 to 100):'))
+        input_stop=str(input('Stop Action:'))
+
+        if input_stop == 'brake':
+            stop_action = ev3.Motor.STOP_ACTION_BRAKE
+        elif stop_action == 'coast':
+            stop_action = ev3.Motor.STOP_ACTION_COAST
+        elif stop_action == 'hold':
+            stop_action == ev3.Motor.STOP_ACTION_HOLD
+
+
+        forward_seconds(seconds_to_travel,speed,stop_action)
 
 
 def forward_seconds(seconds, speed, stop_action):
@@ -40,8 +52,12 @@ def forward_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed backward) and 100 (full speed forward).
     Uses the given stop_action.
     """
-    left_motor=ev3.LargeMotor(ev3.Output_C)
-    right_motor=ev3.LargeMotor(ev3.Output_B)
+    left_motor=ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor=ev3.LargeMotor(ev3.OUTPUT_B)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
     gogojuice=speed*8
     left_motor.run_forever(speed_sp=gogojuice)
     right_motor.run_forever(speed_sp=gogojuice)
@@ -75,8 +91,8 @@ def forward_by_encoders(inches, speed, stop_action):
       1. Compute the number of degrees the wheels should spin to achieve the desired distance.
       2. Move until the computed number of degrees is reached.
     """
-    left_motor = ev3.LargeMotor(ev3.Output_C)
-    right_motor = ev3.LargeMotor(ev3.Output_B)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     gogojuice = speed * 8
     disd = (inches / (1.3 * math.pi))*360
     left_motor.run_to_rel_pos(position_sp=disd, speed_sp=gogojuice)
@@ -98,4 +114,4 @@ def backward_by_encoders(inches, speed, stop_action):
     forward_by_encoders(inches,-speed,stop_action)
 
 
-#test_forward_backward()
+test_forward_backward()
