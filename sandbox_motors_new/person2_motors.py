@@ -228,7 +228,7 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     robot_speed = 4 * ((speed * 8) / 360)
     omega_robot = robot_speed / 2.8125
     rotate_time = radians / omega_robot
-    wheel_degrees = speed * rotate_time
+    wheel_degrees = (speed * 8) * rotate_time
 
     left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
