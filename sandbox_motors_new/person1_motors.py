@@ -72,4 +72,3 @@ def backward_by_encoders(inches, speed, stop_action):
 
 
 #test_forward_backward()
-ev3.Sound.speak("Hello").wait()
