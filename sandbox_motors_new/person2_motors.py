@@ -197,7 +197,7 @@ def spin_left_by_time(degrees, speed, stop_action):
     """
 
     radians = math.pi * (degrees / 180)
-    robot_speed = 4 * ((speed * 8) / 360)
+    robot_speed = abs(4 * ((speed * 8) / 360))
     omega_robot = robot_speed / 2.8125
     sleep_time = (radians / omega_robot)
 
@@ -225,7 +225,7 @@ def spin_left_by_encoders(degrees, speed, stop_action):
     """
 
     radians = math.pi * (degrees / 180)
-    robot_speed = 4 * ((speed * 8) / 360)
+    robot_speed = abs(4 * ((speed * 8) / 360))
     omega_robot = robot_speed / 2.8125
     rotate_time = radians / omega_robot
     wheel_degrees = (speed * 8) * rotate_time
