@@ -126,7 +126,7 @@ def test_spin_left_spin_right():
         degrees = int(input('Enter a number of degrees for the robot to rotate: '))
         if degrees == 0:
             break
-        speed = int(input('Enter a number between -100 and 100: '))
+        speed = int(input('Enter a number between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
@@ -148,7 +148,7 @@ def test_spin_left_spin_right():
         degrees = int(input('Enter a number of degrees for the robot to rotate by: '))
         if degrees == 0:
             break
-        speed = int(input('Enter a number between -100 and 100: '))
+        speed = int(input('Enter a number between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
         if stop_action == 'brake':
