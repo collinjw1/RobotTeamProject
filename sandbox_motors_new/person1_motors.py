@@ -28,22 +28,24 @@ def test_forward_backward():
       3. Same as #2, but runs forward_by_encoders.
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
-    while True:
-        seconds_to_travel=int(input('Seconds to travel:'))
-        if seconds_to_travel == 0:
-            break
-        speed=int(input('Speed(-100 to 100):'))
-        input_stop=str(input('Stop Action:'))
+    print('** Testing of forward_seconds is starting **')
+    print()
 
-        if input_stop == 'brake':
+    while True:
+        seconds = int(input('Enter a number of seconds to travel for: '))
+        if seconds == 0:
+            break
+        speed = int(input('Enter a speed for the robot to travel at between 0 and 100: '))
+        stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
+
+        if stop_action == 'brake':
             stop_action = ev3.Motor.STOP_ACTION_BRAKE
         elif stop_action == 'coast':
             stop_action = ev3.Motor.STOP_ACTION_COAST
-        elif stop_action == 'hold':
-            stop_action == ev3.Motor.STOP_ACTION_HOLD
+        else:
+            stop_action = ev3.Motor.STOP_ACTION_HOLD
 
-
-        forward_seconds(seconds_to_travel,speed,stop_action)
+        forward_seconds(seconds, speed, stop_action)
 
 
 def forward_seconds(seconds, speed, stop_action):
