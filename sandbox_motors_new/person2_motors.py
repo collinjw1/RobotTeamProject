@@ -119,7 +119,7 @@ def test_spin_left_spin_right():
         spin_right_by_encoders(degrees, speed, stop_action)
 
     print()
-    print('Testing has ended.')
+    print('Testing has ended')
 
 
 def spin_left_seconds(seconds, speed, stop_action):
