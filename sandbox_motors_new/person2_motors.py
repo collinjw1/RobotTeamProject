@@ -41,13 +41,6 @@ def test_spin_left_spin_right():
         speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
-
         spin_left_seconds(seconds, speed, stop_action)
 
     # Testing spin_left_by_time:
@@ -62,13 +55,6 @@ def test_spin_left_spin_right():
             break
         speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
-
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
 
         spin_left_by_time(degrees, speed, stop_action)
 
@@ -85,13 +71,6 @@ def test_spin_left_spin_right():
         speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
-
         spin_left_by_encoders(degrees, speed, stop_action)
 
     # Testing spin_right_seconds:
@@ -107,13 +86,6 @@ def test_spin_left_spin_right():
         speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
 
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
-
         spin_right_seconds(seconds, speed, stop_action)
 
     # Testing spin_right_by_time:
@@ -126,15 +98,8 @@ def test_spin_left_spin_right():
         degrees = int(input('Enter a number of degrees for the robot to rotate: '))
         if degrees == 0:
             break
-        speed = int(input('Enter a number between 0 and 100: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
-
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
 
         spin_right_by_time(degrees, speed, stop_action)
 
@@ -148,20 +113,13 @@ def test_spin_left_spin_right():
         degrees = int(input('Enter a number of degrees for the robot to rotate by: '))
         if degrees == 0:
             break
-        speed = int(input('Enter a number between 0 and 100: '))
+        speed = int(input('Enter a speed for the wheels to spin at between 0 and 100: '))
         stop_action = str(input('Enter a stop action (brake, coast, or hold): '))
-
-        if stop_action == 'brake':
-            stop_action = ev3.Motor.STOP_ACTION_BRAKE
-        elif stop_action == 'coast':
-            stop_action = ev3.Motor.STOP_ACTION_COAST
-        else:
-            stop_action = ev3.Motor.STOP_ACTION_HOLD
 
         spin_right_by_encoders(degrees, speed, stop_action)
 
     print()
-    print('Testing has ended.')
+    print('Testing has ended')
 
 
 def spin_left_seconds(seconds, speed, stop_action):
@@ -256,7 +214,7 @@ def spin_right_by_time(degrees, speed, stop_action):
 
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
-    spin_left_by_encoders(degrees, speed, stop_action)
+    spin_left_by_encoders(degrees, -speed, stop_action)
 
 
 test_spin_left_spin_right()
