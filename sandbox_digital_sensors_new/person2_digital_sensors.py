@@ -7,8 +7,8 @@ Person 1: ev3.TouchSensor
 Person 2: ev3.Button
 Person 3: ev3.RemoteControl
 
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Isaiah Jolly.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # -----------------------------------------------------------------------------
 # TODO: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
@@ -116,9 +116,14 @@ def print_state_of_left_button_on_brick(n, seconds_per_print):
        2. SLEEPs for the given number of seconds.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # DONE: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
+
+    btn = ev3.Button()
+    for _ in range(n):
+        print(btn.left)
+        time.sleep(seconds_per_print)
 
 
 def run_test_wait_for_press_on_brick_button():
@@ -176,9 +181,15 @@ def wait_for_up_button_press():
        2. Sleeps for a small amount (say, 0.05 seconds).
     """
     # -------------------------------------------------------------------------
-    # TODO: 4.  Implement and test this function.
+    # DONE: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
+
+    btn = ev3.Button
+    while True:
+        if btn.up:
+            break
+    time.sleep(0.05)
 
 
 def run_test_show_leds():
@@ -205,6 +216,19 @@ def show_leds():
        -- DOWN button:  Both LEDs turn off (i.e., to BLACK).
        -- BACKSPACE button: The program breaks out of the loop.
     """
+
+    btn = ev3.Button
+    while True:
+        if btn.left:
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+        if btn.right:
+            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
+        if btn.up:
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
+        if btn.down:
+            ev3.Leds.all_off()
+        if btn.backspace:
+            break
 
 
 # -----------------------------------------------------------------------------
