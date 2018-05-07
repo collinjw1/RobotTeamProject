@@ -33,9 +33,9 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
-    # run_test_buttons_on_brick()
+    run_test_buttons_on_brick()
     run_test_wait_for_press_on_brick_button()
-    # run_test_show_leds()
+    run_test_show_leds()
 
 
 def run_test_buttons_on_brick():
@@ -187,7 +187,7 @@ def wait_for_up_button_press():
 
     btn = ev3.Button
     while True:
-        if btn.up:
+        if btn.up is True:
             break
     time.sleep(0.05)
 
@@ -219,15 +219,15 @@ def show_leds():
 
     btn = ev3.Button
     while True:
-        if btn.left:
+        if btn.left is True:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
-        if btn.right:
+        if btn.right is True:
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
-        if btn.up:
+        if btn.up is True:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
-        if btn.down:
+        if btn.down is True:
             ev3.Leds.all_off()
-        if btn.backspace:
+        if btn.backspace is True:
             break
 
 
