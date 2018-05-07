@@ -34,7 +34,7 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
     # run_test_buttons_on_brick()
-    # run_test_wait_for_press_on_brick_button()
+    run_test_wait_for_press_on_brick_button()
     # run_test_show_leds()
 
 
