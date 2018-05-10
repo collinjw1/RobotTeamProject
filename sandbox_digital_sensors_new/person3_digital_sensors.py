@@ -121,7 +121,7 @@ def print_state_of_blue_up_button_on_ir_beacon(n, seconds_per_print):
         print(remote.blue_up)
         time.sleep(seconds_per_print)
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # DONE: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
@@ -193,7 +193,7 @@ def wait_for_RED_DOWN_button_press():
     time.sleep(0.05)
 
     # -------------------------------------------------------------------------
-    # TODO: 4.  Implement and test this function.
+    # DONE: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
