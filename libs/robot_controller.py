@@ -18,6 +18,48 @@ import time
 
 class Snatch3r(object):
     """Commands for the Snatch3r robot that might be useful in many different programs."""
-    
-    # TODO: Implement the Snatch3r class as needed when working the sandox exercises
-    # (and delete these comments)
+
+    def __init__(self):
+        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+        self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+        assert self.left_motor.connected
+        assert self.right_motor.connected
+
+    def forward(self, inches, speed=100, stop_action='brake'):
+        gogojuice = speed * 8
+        disd = (inches / (1.3 * math.pi)) * 360
+        self.left_motor.run_to_rel_pos(position_sp=disd, speed_sp=gogojuice, stop_action=stop_action)
+        self.right_motor.run_to_rel_pos(position_sp=disd, speed_sp=gogojuice, stop_action=stop_action)
+        self.left_motor.wait_while("running")
+        self.right_motor.wait_while("running")
+
+    def backward(self, inches, speed=100, stop_action='brake'):
+        self.forward(-inches, speed, stop_action)
+
+    def spin_right(self, degrees, speed, stop_action='brake'):
+        radians = math.pi * (degrees / 180)
+        robot_speed = abs(4 * ((speed * 8) / 360))
+        omega_robot = robot_speed / 2.8125
+        rotate_time = radians / omega_robot
+        wheel_degrees = (speed * 8) * rotate_time
+
+        self.left_motor.run_to_rel_pos(position_sp=-wheel_degrees, speed_sp=-speed * 8)
+        self.right_motor.run_to_rel_pos(position_sp=wheel_degrees, speed_sp=speed * 8)
+        self.left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        self.left_motor.stop(stop_action=stop_action)
+        self.right_motor.stop(stop_action=stop_action)
+        ev3.Sound.beep().wait()
+
+    def spin_left(self, degrees, speed, stop_action='brake'):
+        self.spin_right(degrees, -speed, stop_action)
+
+    def turn_right(self, degrees, speed, stop_action='brake'):
+        deg = 10 * degrees
+        self.right_motor.run_to_rel_pos(position_sp=deg, speed_sp=speed * 8)
+        self.right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        self.right_motor.stop(stop_action=stop_action)
+        ev3.Sound.beep().wait()
+
+    def turn_left(self, degrees, speed, stop_action='brake'):
+        self.turn_right(-degrees, speed, stop_action)
