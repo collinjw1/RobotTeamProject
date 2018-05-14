@@ -156,7 +156,7 @@ def handle_button_press(button_state, mqtt_client, button_name):
 #
 # Observations you should make, when communicating using MQTT there is always a program running on EV3 and on your PC
 #   at the same time.  To make your life easier, you only write one of those programs this time (the on on the EV3).
-#   We try to use the naming convention m#_pc and m#_ev3 to show where the program should run since it gets confusing.
+#   We try to use the naming convention m#_pc and m#_ev3 to show where the program should run since it gets confusing
 
 
 def handle_shutdown(button_state, my_delegate):
