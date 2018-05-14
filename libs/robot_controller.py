@@ -22,6 +22,7 @@ class Snatch3r(object):
     def __init__(self):
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.running = None
 
         assert self.left_motor.connected
         assert self.right_motor.connected
@@ -63,3 +64,11 @@ class Snatch3r(object):
 
     def turn_left(self, degrees, speed, stop_action='brake'):
         self.turn_right(-degrees, speed, stop_action)
+
+    def loop_forever(self):
+        self.running = True
+        while self.running:
+            time.sleep(0.01)
+
+    def shutdown(self):
+        self.running = False
