@@ -73,4 +73,6 @@ class Snatch3r(object):
     def shutdown(self):
         ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
+        self.left_motor.stop()
+        self.right_motor.stop()
         self.running = False
