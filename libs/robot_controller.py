@@ -57,8 +57,8 @@ class Snatch3r(object):
         self.left_motor.wait_while('running')
 
     def stop(self):
-        self.left_motor.stop('brake')
-        self.right_motor.stop('brake')
+        self.left_motor.stop(stop_action='brake')
+        self.right_motor.stop(stop_action='brake')
 
     def backward(self, inches, speed=100, stop_action='brake'):
         self.forward(-inches, speed, stop_action)
@@ -94,14 +94,14 @@ class Snatch3r(object):
         self.arm_motor.run_forever(speed_sp=speed)
         while True:
             if self.touch_sens.is_pressed:
-                self.arm_motor.stop('brake')
+                self.arm_motor.stop(stop_action='brake')
                 break
             time.sleep(0.05)
 
-    def arm_down(self, speed=300):
+    def arm_down(self, speed=900):
         self.arm_motor.run_forever(speed_sp=-speed)
         time.sleep(4)
-        arm.motor.stop('brake')
+        self.arm_motor.stop(stop_action='brake')
 
     def loop_forever(self):
         self.running = True
