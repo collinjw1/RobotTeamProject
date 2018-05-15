@@ -20,8 +20,8 @@ class Snatch3r(object):
     """Commands for the Snatch3r robot that might be useful in many different programs."""
 
     def __init__(self):
-        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-        self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.touch_sens = ev3.TouchSensor
         self.running = None
@@ -41,24 +41,20 @@ class Snatch3r(object):
     def drive(self, left_speed, right_speed):
         self.left_motor.run_forever(speed_sp=left_speed)
         self.right_motor.run_forever(speed_sp=right_speed)
-        self.left_motor.wait_while('running')
 
     def drive_back(self, left_speed, right_speed):
         self.left_motor.run_forever(speed_sp=-left_speed)
         self.right_motor.run_forever(speed_sp=-right_speed)
-        self.left_motor.wait_while('running')
 
     def left_turn(self, speed):
-        self.right_motor.run_forever(speef_sp=speed)
-        self.right_motor.wait_while('running')
+        self.right_motor.run_forever(speed_sp=speed)
 
     def right_turn(self, speed):
         self.left_motor.run_forever(speed_sp=speed)
-        self.left_motor.wait_while('running')
 
     def stop(self):
-        self.left_motor.stop(stop_action='brake')
-        self.right_motor.stop(stop_action='brake')
+        self.left_motor.stop()
+        self.right_motor.stop()
 
     def backward(self, inches, speed=100, stop_action='brake'):
         self.forward(-inches, speed, stop_action)

@@ -152,12 +152,12 @@ def send_back(client, left_speed, right_speed):
 
 # Arm command callbacks
 def send_up(mqtt_client):
-    print("arm_up")
+    print("Raising arm")
     mqtt_client.send_message("arm_up")
 
 
 def send_down(mqtt_client):
-    print("arm_down")
+    print("Lowering arm")
     mqtt_client.send_message("arm_down")
 
 
