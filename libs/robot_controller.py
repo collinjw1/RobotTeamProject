@@ -22,10 +22,13 @@ class Snatch3r(object):
     def __init__(self):
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
+        self.touch_sens = ev3.TouchSensor
         self.running = None
 
         assert self.left_motor.connected
         assert self.right_motor.connected
+        assert self.arm_motor.connected
 
     def forward(self, inches, speed=100, stop_action='brake'):
         gogojuice = speed * 8
@@ -86,6 +89,19 @@ class Snatch3r(object):
 
     def turn_left(self, degrees, speed, stop_action='brake'):
         self.turn_right(-degrees, speed, stop_action)
+
+    def arm_up(self, speed=300):
+        self.arm_motor.run_forever(speed_sp=speed)
+        while True:
+            if self.touch_sens.is_pressed:
+                self.arm_motor.stop('brake')
+                break
+            time.sleep(0.05)
+
+    def arm_down(self, speed=300):
+        self.arm_motor.run_forever(speed_sp=-speed)
+        time.sleep(4)
+        arm.motor.stop('brake')
 
     def loop_forever(self):
         self.running = True
