@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+# !/usr/bin/env python3
 """
 The  DIGITAL SENSORS   workshop.
 Also covers the ev3.Sound, ev3.Leds, and ev3.Screen classes.
@@ -33,8 +33,8 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
-    run_test_buttons_on_brick()
-    run_test_wait_for_press_on_brick_button()
+    # run_test_buttons_on_brick()
+    # run_test_wait_for_press_on_brick_button()
     run_test_show_leds()
 
 
@@ -185,7 +185,7 @@ def wait_for_up_button_press():
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
-    btn = ev3.Button
+    btn = ev3.Button()
 
     while True:
         if btn.up:
@@ -205,6 +205,8 @@ def run_test_show_leds():
           + ' on the BRICK to change LED states.')
     print()
 
+    show_leds()
+
 
 def show_leds():
     """
@@ -218,7 +220,7 @@ def show_leds():
        -- BACKSPACE button: The program breaks out of the loop.
     """
 
-    btn = ev3.Button
+    btn = ev3.Button()
     while True:
         if btn.left:
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
@@ -229,7 +231,10 @@ def show_leds():
         if btn.down:
             ev3.Leds.all_off()
         if btn.backspace:
+            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
             break
+        time.sleep(0.05)
 
 
 # -----------------------------------------------------------------------------
