@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 """
 The  DIGITAL SENSORS   workshop.
 Also covers the ev3.Sound, ev3.Leds, and ev3.Screen classes.
