@@ -25,7 +25,9 @@ class Snatch3r(object):
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.touch_sens = ev3.TouchSensor
         self.running = None
+        self.ir_sensor = ev3.InfraredSensor()
 
+        assert self.ir_sensor
         assert self.left_motor.connected
         assert self.right_motor.connected
         assert self.arm_motor.connected
@@ -37,6 +39,16 @@ class Snatch3r(object):
         self.right_motor.run_to_rel_pos(position_sp=disd, speed_sp=gogojuice, stop_action=stop_action)
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
+
+
+    def forward_smart(self, speed=600):
+        self.drive(speed, speed)
+        while True:
+            if self.ir_sensor < 15:
+                break
+            time.sleep(0.1)
+        self.stop()
+
 
     def drive(self, left_speed, right_speed):
         self.left_motor.run_forever(speed_sp=left_speed)
@@ -108,3 +120,40 @@ class Snatch3r(object):
         self.right_motor.stop()
         self.arm_motor.stop()
         self.running = False
+
+
+    ##############################################################
+    #  For Chio's Project
+    ##############################################################
+
+    def spin_move_left(self):
+        self.spin_right(270, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_right(90, 100, stop_action='brake')
+
+    def spin_move_right(self):
+        self.spin_left(270, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_left(90, 100, stop_action='brake')
+
+    def juke_left(self):
+        self.spin_right(20, 100, stop_action='brake')
+        self.spin_left(110, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_right(90, 100, stop_action='brake')
+
+    def juke_right(self):
+        self.spin_left(20, 100, stop_action='brake')
+        self.spin_right(110, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_left(90, 100, stop_action='brake')
+
+    def cut_left(self):
+        self.spin_left(90, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_right(90, 100, stop_action='brake')
+
+    def cut_right(self):
+        self.spin_right(90, 100, stop_action='brake')
+        self.forward(20, 100, stop_action='brake')
+        self.turn_left(90, 100, stop_action='brake')
