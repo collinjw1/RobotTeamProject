@@ -128,12 +128,12 @@ class Snatch3r(object):
     def spin_move_left(self):
         self.spin_right(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_right(90, 100, stop_action='brake')
+        self.turn_right(105, 100, stop_action='brake')
 
     def spin_move_right(self):
         self.spin_left(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_left(90, 100, stop_action='brake')
+        self.turn_left(80, 100, stop_action='brake')
 
     def juke_left(self):
         self.spin_right(20, 100, stop_action='brake')
@@ -147,15 +147,15 @@ class Snatch3r(object):
         self.forward(20, 100, stop_action='brake')
         self.turn_left(90, 100, stop_action='brake')
 
-    def cut_left(self):
+    def cut_right(self):
         self.spin_left(90, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(90, 100, stop_action='brake')
 
-    def cut_right(self):
+    def cut_left(self):
         self.spin_right(90, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_left(90, 100, stop_action='brake')
+        self.turn_left(85, 100, stop_action='brake')
 
 
 ####################################################################
