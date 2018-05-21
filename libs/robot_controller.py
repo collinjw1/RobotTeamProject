@@ -41,7 +41,7 @@ class Snatch3r(object):
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
 
-    def forward_smart(self, dist, speed=600):
+    def forward_smart(self, dist, speed=800):
         self.drive(speed, speed)
         while True:
             if self.ir_sensor.proximity < dist:
