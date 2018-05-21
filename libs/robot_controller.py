@@ -125,23 +125,23 @@ class Snatch3r(object):
     #  For Chio's Project
     ##############################################################
 
-    def spin_move_left(self):
+    def spin_move_right(self):
         self.spin_right(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(105, 100, stop_action='brake')
 
-    def spin_move_right(self):
+    def spin_move_left(self):
         self.spin_left(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_left(80, 100, stop_action='brake')
 
-    def juke_left(self):
+    def juke_right(self):
         self.spin_right(20, 100, stop_action='brake')
         self.spin_left(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(90, 100, stop_action='brake')
 
-    def juke_right(self):
+    def juke_left(self):
         self.spin_left(20, 100, stop_action='brake')
         self.spin_right(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
