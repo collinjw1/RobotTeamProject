@@ -27,7 +27,7 @@ class Snatch3r(object):
         self.running = None
         self.ir_sensor = ev3.InfraredSensor()
 
-        assert self.ir_sensor
+        assert self.ir_sensor.connected
         assert self.left_motor.connected
         assert self.right_motor.connected
         assert self.arm_motor.connected
@@ -43,7 +43,7 @@ class Snatch3r(object):
     def forward_smart(self, speed=600):
         self.drive(speed, speed)
         while True:
-            if self.ir_sensor < 15:
+            if self.ir_sensor.proximity < 15:
                 break
             time.sleep(0.01)
         self.stop()
