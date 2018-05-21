@@ -26,6 +26,7 @@ class Snatch3r(object):
         self.touch_sens = ev3.TouchSensor
         self.running = None
         self.ir_sensor = ev3.InfraredSensor()
+        self.bs = ev3.BeaconSeeker(channel=1)
 
         assert self.ir_sensor.connected
         assert self.left_motor.connected
@@ -155,3 +156,21 @@ class Snatch3r(object):
         self.spin_right(90, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_left(90, 100, stop_action='brake')
+
+
+####################################################################
+# For Isaiah's Project
+####################################################################
+
+    def spin_forever(self, speed=300):
+        self.left_motor.run_forever(speed_sp=speed)
+        self.right_motor.run_forever(speed_sp=-speed)
+
+    def get_beacon_heading(self):
+        self.spin_forever()
+        while True:
+            if -1 < self.bs.heading < 1:
+                self.stop()
+            time.sleep(0.05)
+
+    def
