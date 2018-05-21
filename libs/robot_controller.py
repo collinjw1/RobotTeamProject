@@ -40,7 +40,6 @@ class Snatch3r(object):
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
 
-
     def forward_smart(self, speed=600):
         self.drive(speed, speed)
         while True:
@@ -48,7 +47,6 @@ class Snatch3r(object):
                 break
             time.sleep(0.01)
         self.stop()
-
 
     def drive(self, left_speed, right_speed):
         self.left_motor.run_forever(speed_sp=left_speed)
