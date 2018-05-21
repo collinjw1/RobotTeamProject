@@ -137,13 +137,13 @@ class Snatch3r(object):
 
     def juke_left(self):
         self.spin_right(20, 100, stop_action='brake')
-        self.spin_left(110, 100, stop_action='brake')
+        self.spin_left(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(90, 100, stop_action='brake')
 
     def juke_right(self):
         self.spin_left(20, 100, stop_action='brake')
-        self.spin_right(110, 100, stop_action='brake')
+        self.spin_right(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_left(90, 100, stop_action='brake')
 

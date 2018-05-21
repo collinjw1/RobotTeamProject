@@ -42,7 +42,7 @@ class Receiver(object):
 
         juke_right_button = ttk.Button(main_frame, text="Juke right")
         juke_right_button.grid(row=2, column=1)
-        juke_left_button['command'] = lambda: send_juke_right(droot, mqtt_client)
+        juke_right_button['command'] = lambda: send_juke_right(droot, mqtt_client)
 
         spin_left_button = ttk.Button(main_frame, text="Spin left")
         spin_left_button.grid(row=3, column=0)
@@ -52,16 +52,17 @@ class Receiver(object):
         spin_right_button.grid(row=3, column=1)
         spin_right_button['command'] = lambda: send_spin_right(droot, mqtt_client)
 
-        touchdown_button = ttk.Button(main_frame, text="Spin right")
+        touchdown_button = ttk.Button(main_frame, text="Touchdown")
         touchdown_button.grid(row=4, column=1)
-        touchdown_button['command'] = lambda: touchdown(droot, mqtt_client)
+        touchdown_button['command'] = lambda: self.touchdown(droot, mqtt_client)
 
         droot.mainloop()
 
-        def touchdown(root, client):
-            client.send_message('touchdown')
-            root.destroy()
-            self.running = False
+
+    def touchdown(self, root, client):
+        client.send_message('touchdown')
+        root.destroy()
+        self.running = False
 
 
 receiver = Receiver()
@@ -92,7 +93,7 @@ def kickoff():
 
 
 def send_kickoff(root, client):
-    client.send_message('ev3_kickoff')
+    client.send_message('kickoff')
     root.destroy()
 
 
@@ -107,11 +108,13 @@ def send_cut_right(root, client):
 
 
 def send_juke_left(root, client):
+    print('juuuuuuuuke')
     client.send_message('juke_left')
     root.destroy()
 
 
 def send_juke_right(root, client):
+    print('juuuuuuuuke')
     client.send_message('juke_right')
     root.destroy()
 
@@ -124,3 +127,7 @@ def send_spin_left(root, client):
 def send_spin_right(root, client):
     client.send_message('spin_right')
     root.destroy()
+
+
+
+main()
