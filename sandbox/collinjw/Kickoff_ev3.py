@@ -23,7 +23,7 @@ class Returnman(object):
         robot.shutdown()
 
     def run(self):
-        robot.forward_smart(40)
+        robot.forward_smart(60)
         mqtt_client.send_message('defender')
 
     def cut_left(self):

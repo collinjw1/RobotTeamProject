@@ -41,7 +41,7 @@ class Snatch3r(object):
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
 
-    def forward_smart(self, dist, speed=400):
+    def forward_smart(self, dist, speed=600):
         self.drive(speed, speed)
         while True:
             if self.ir_sensor.proximity < dist:
@@ -126,7 +126,7 @@ class Snatch3r(object):
     ##############################################################
 
     def spin_move_right(self):
-        self.spin_right(260, 100, stop_action='brake')
+        self.spin_right(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(95, 100, stop_action='brake')
 
@@ -137,7 +137,7 @@ class Snatch3r(object):
 
     def juke_right(self):
         self.spin_right(20, 100, stop_action='brake')
-        self.spin_left(110, 100, stop_action='brake')
+        self.spin_left(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(90, 100, stop_action='brake')
 

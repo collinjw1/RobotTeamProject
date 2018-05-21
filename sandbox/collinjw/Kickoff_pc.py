@@ -33,7 +33,7 @@ class Receiver(object):
         cut_left_button['command'] = lambda: send_cut_left(droot, mqtt_client)
 
         cut_right_button = ttk.Button(main_frame, text="Cut right")
-        cut_right_button.grid(row=1, column=1)
+        cut_right_button.grid(row=1, column=2)
         cut_right_button['command'] = lambda: send_cut_right(droot, mqtt_client)
 
         juke_left_button = ttk.Button(main_frame, text="Juke left")
@@ -41,7 +41,7 @@ class Receiver(object):
         juke_left_button['command'] = lambda: send_juke_left(droot, mqtt_client)
 
         juke_right_button = ttk.Button(main_frame, text="Juke right")
-        juke_right_button.grid(row=2, column=1)
+        juke_right_button.grid(row=2, column=2)
         juke_right_button['command'] = lambda: send_juke_right(droot, mqtt_client)
 
         spin_left_button = ttk.Button(main_frame, text="Spin left")
@@ -49,11 +49,11 @@ class Receiver(object):
         spin_left_button['command'] = lambda: send_spin_left(droot, mqtt_client)
 
         spin_right_button = ttk.Button(main_frame, text="Spin right")
-        spin_right_button.grid(row=3, column=1)
+        spin_right_button.grid(row=3, column=2)
         spin_right_button['command'] = lambda: send_spin_right(droot, mqtt_client)
 
         touchdown_button = ttk.Button(main_frame, text="Touchdown")
-        touchdown_button.grid(row=4, column=1)
+        touchdown_button.grid(row=2, column=1)
         touchdown_button['command'] = lambda: self.touchdown(droot, mqtt_client)
 
         droot.mainloop()
