@@ -16,11 +16,9 @@ def main():
 class Returnman(object):
 
     def kickoff(self):
-        robot.arm_up()
         self.run()
 
     def touchdown(self):
-        robot.arm_down()
         time.sleep(5.0)
         robot.shutdown()
 
