@@ -144,7 +144,7 @@ def send_back(client, left_speed, right_speed):
     print('Driving backwards')
     client.send_message('drive_back', [left_speed, right_speed])
 
-# TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
+# DONE: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
 # Observations you should make, you did basically this same program using the IR Remote, but your computer can be a
 # remote control that can do A LOT more than an IR Remote.  We are just doing the basics here.
