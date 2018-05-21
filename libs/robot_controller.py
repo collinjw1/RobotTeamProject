@@ -41,7 +41,7 @@ class Snatch3r(object):
         self.left_motor.wait_while("running")
         self.right_motor.wait_while("running")
 
-    def forward_smart(self, dist, speed=600):
+    def forward_smart(self, dist, speed=400):
         self.drive(speed, speed)
         while True:
             if self.ir_sensor.proximity < dist:
@@ -126,18 +126,18 @@ class Snatch3r(object):
     ##############################################################
 
     def spin_move_right(self):
-        self.spin_right(270, 100, stop_action='brake')
+        self.spin_right(260, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_right(105, 100, stop_action='brake')
+        self.turn_right(95, 100, stop_action='brake')
 
     def spin_move_left(self):
         self.spin_left(270, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_left(80, 100, stop_action='brake')
+        self.turn_left(85, 100, stop_action='brake')
 
     def juke_right(self):
         self.spin_right(20, 100, stop_action='brake')
-        self.spin_left(120, 100, stop_action='brake')
+        self.spin_left(110, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
         self.turn_right(90, 100, stop_action='brake')
 
@@ -145,12 +145,12 @@ class Snatch3r(object):
         self.spin_left(20, 100, stop_action='brake')
         self.spin_right(120, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_left(90, 100, stop_action='brake')
+        self.turn_left(80, 100, stop_action='brake')
 
     def cut_right(self):
         self.spin_left(90, 100, stop_action='brake')
         self.forward(20, 100, stop_action='brake')
-        self.turn_right(90, 100, stop_action='brake')
+        self.turn_right(95, 100, stop_action='brake')
 
     def cut_left(self):
         self.spin_right(90, 100, stop_action='brake')
