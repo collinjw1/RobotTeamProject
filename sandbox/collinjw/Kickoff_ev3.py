@@ -4,44 +4,57 @@ This is my individual robot project.
 Author: Jonathan Collins.
 """
 
-import tkinter
-from tkinter import ttk
-
 import mqtt_remote_method_calls as com
 import robot_controller as robo
+import time
 
-robot=robo.Snatch3r()
-mqtt_client = com.MqttClient(robot)
-mqtt_client.connect_to_pc()
 
 def main():
     robot.loop_forever()
 
 
-def touchdown():
+class Returnman(object):
+
+    def kickoff(self):
+        robot.arm_up()
+        self.run()
+
+    def touchdown(self):
+        robot.arm_down()
+        time.sleep(5.0)
+        robot.shutdown()
+
+    def run(self):
+        robot.forward_smart(15)
+        mqtt_client.send_message('defender')
+
+    def cut_left(self):
+        robot.cut_left()
+        self.run()
+
+    def cut_right(self):
+        robot.cut_right()
+        self.run()
+
+    def juke_left(self):
+        robot.juke_left()
+        self.run()
+
+    def juke_right(self):
+        robot.juke_right()
+        self.run()
+
+    def spin_left(self):
+        robot.spin_move_left()
+        self.run()
+
+    def spin_right(self):
+        robot.spin_move_right()
+        self.run()
 
 
-
-def run():
-    robot.forward_smart(15)
-    mqtt_client.send_message('command')
-
-
-#client gives to delegate(snatcher)
-#delegate==class
-
-
-def cut_left():
-    robot.cut_left()
-    run()
-#cut/spin/juke/TD
-
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+robot = robo.Snatch3r()
+returnman = Returnman()
+mqtt_client = com.MqttClient(returnman)
+mqtt_client.connect_to_pc()
 main()
