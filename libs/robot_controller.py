@@ -46,7 +46,7 @@ class Snatch3r(object):
         while True:
             if self.ir_sensor < 15:
                 break
-            time.sleep(0.1)
+            time.sleep(0.01)
         self.stop()
 
 
