@@ -173,3 +173,4 @@ class Snatch3r(object):
                 self.stop()
             time.sleep(0.05)
 
+    def find_beacon(self):
