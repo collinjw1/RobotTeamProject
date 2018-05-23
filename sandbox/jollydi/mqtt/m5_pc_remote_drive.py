@@ -33,7 +33,7 @@ import mqtt_remote_method_calls as com
 
 def main():
     # DONE: 2. Setup an mqtt_client. Notice that since you don't need to receive any messages you do NOT need to have
-    # a MyDelegate class.  Simply construct the MqttClient with no parameter in the constructor (easy).
+    # a MyDelegate class.  Simply construct the MqttClient with no parameter in the constructor (easy)
 
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
