@@ -14,6 +14,7 @@
 import ev3dev.ev3 as ev3
 import math
 import time
+import mqtt_remote_method_calls as com
 
 
 class Snatch3r(object):
@@ -27,6 +28,7 @@ class Snatch3r(object):
         self.running = None
         self.ir_sensor = ev3.InfraredSensor()
         self.bs = ev3.BeaconSeeker(channel=1)
+        self.blocked = False
 
         assert self.ir_sensor.connected
         assert self.left_motor.connected
@@ -171,6 +173,43 @@ class Snatch3r(object):
         while True:
             if -1 < self.bs.heading < 1:
                 self.stop()
+                print('Beacon found')
+                break
             time.sleep(0.05)
 
-    def find_beacon(self):
+    def drive_until_obstacle(self, speed):
+        self.drive(speed, speed)
+        while True:
+            if self.bs.distance < 5:
+                self.stop()
+                print('Beacon found')
+                break
+            if self.ir_sensor.proximity < 10:
+                self.stop()
+                self.blocked = True
+                print('Obstacle found')
+                break
+            time.sleep(0.01)
+
+    def ask_for_directions(self, client):
+        print('Asking for directions')
+        client.send_message('give_directions')
+        self.blocked = False
+
+    def adjust_left(self):
+        print('Adjusting path')
+        self.spin_forever(-300)
+        time.sleep(3)
+        self.stop()
+        self.drive(400, 400)
+        time.sleep(2.5)
+        self.stop()
+
+    def adjust_right(self):
+        print('Adjusting path')
+        self.spin_forever()
+        time.sleep(3)
+        self.stop()
+        self.drive(400, 400)
+        time.sleep(2.5)
+        self.stop()
