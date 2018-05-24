@@ -27,7 +27,7 @@ class Snatch3r(object):
         self.touch_sens = ev3.TouchSensor
         self.running = None
         self.ir_sensor = ev3.InfraredSensor()
-        self.bs = ev3.BeaconSeeker(channel=1)
+        self.bs = ev3.BeaconSeeker(sensor=None, channel=1)
         self.blocked = False
         self.at_beacon = False
 
@@ -171,26 +171,38 @@ class Snatch3r(object):
     def get_beacon_heading(self):
         self.spin_forever()
         while True:
-            if -1 < self.bs.heading < 1:
+            if self.bs.heading == 0:
                 self.stop()
-                print('Beacon found')
+                dist = self.bs.distance
                 break
-            time.sleep(0.05)
+        self.spin_forever()
+        time.sleep(2)
+        self.stop()
+        if self.bs.distance < dist:
+            while True:
+                if self.bs.heading == 0:
+                    self.stop()
+                    print('Beacon found')
+                    break
+        else:
+            self.spin_forever(-400)
+            time.sleep(2)
+            self.stop()
 
     def drive_until_obstacle(self, speed):
         self.drive(speed, speed)
         while True:
-            if self.bs.distance < 10:
+            if self.bs.distance < 2:
                 self.stop()
                 print('Beacon found')
                 self.at_beacon = True
                 break
-            if self.ir_sensor.proximity < 10:
+
+            if self.ir_sensor.proximity < 5:
                 self.stop()
                 self.blocked = True
                 print('Obstacle found')
                 break
-            time.sleep(0.01)
 
     def ask_for_directions(self, client):
         print('Asking for directions')
@@ -203,7 +215,7 @@ class Snatch3r(object):
         time.sleep(3)
         self.stop()
         self.drive(400, 400)
-        time.sleep(2.5)
+        time.sleep(2)
         self.stop()
 
     def adjust_right(self):
