@@ -68,7 +68,7 @@ class BabeRuth(object):
 
          ball = ttk.Button(main_frame, text='Ball')
          ball.grid(row=2, column=0)
-         ball['command'] = lambda: 
+         ball['command'] = lambda:  
          strike = ttk.Button(main_frame, text='Strike')
          strike.grid(row=2, column=1)
          strike['command'] = lambda:
