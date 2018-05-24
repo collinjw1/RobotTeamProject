@@ -14,7 +14,7 @@ def main():
 
 
 def swing_the_bat():
-    robot.arm_up()
+    robot.arm_up() 
     robot.arm_down()
     mqtt_client.send_message('pitch')
 
