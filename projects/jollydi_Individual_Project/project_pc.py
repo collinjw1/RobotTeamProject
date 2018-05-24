@@ -3,10 +3,11 @@ from tkinter import ttk
 import pc_delegate as pcd
 import mqtt_remote_method_calls as com
 
+
 def main():
     delegate = pcd.Pc_delegate()
-    client = com.MqttClient()
-    client.connect_to_ev3(delegate)
+    client = com.MqttClient(delegate)
+    client.connect_to_ev3()
 
     root = tkinter.Tk()
     root.title('MQTT Robot Controller')
@@ -30,6 +31,8 @@ def main():
     quit_button['command'] = lambda: quit_program(client)
     quit_button.grid(row=4, column=0)
 
+    root.mainloop()
+
 
 def send_find(client):
     client.send_message('get_beacon_heading')
@@ -37,7 +40,7 @@ def send_find(client):
 
 
 def send_drive(client, speed):
-    client.send_message('drive_until_obstacle', [speed])
+    client.send_message('drive_until_obstacle', [speed * 8])
     print('Driving towards beacon')
 
 
@@ -45,3 +48,6 @@ def quit_program(client):
     client.send_message('shut_off')
     client.close()
     exit()
+
+
+main()

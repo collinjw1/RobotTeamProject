@@ -9,6 +9,7 @@ class Pc_delegate(object):
         self.client = com.MqttClient()
         self.client.connect_to_ev3()
         self.root = tkinter.Tk()
+        self.root.title('Directions')
 
     def give_directions(self):
 

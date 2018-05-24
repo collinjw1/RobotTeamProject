@@ -216,6 +216,7 @@ class Snatch3r(object):
         self.stop()
 
     def shut_off(self):
+        print('Quitting')
         self.stop()
         self.arm_down()
         self.arm_motor.wait_while('running')
