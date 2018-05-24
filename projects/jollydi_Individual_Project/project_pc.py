@@ -23,7 +23,7 @@ def main():
     find_button['command'] = lambda: send_find(client)
     find_button.grid(row=2, column=0)
 
-    drive_button = ttk.Button(main_frame, text='Drive Until Obstacle')
+    drive_button = ttk.Button(main_frame, text='Drive To Beacon')
     drive_button['command'] = lambda: send_drive(client, int(speed_entry.get()))
     drive_button.grid(row=3, column=0)
 
