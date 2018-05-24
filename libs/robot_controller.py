@@ -236,19 +236,21 @@ class Snatch3r(object):
     def loop(self, client):
         self.running = True
         while self.running:
-            if self.blocked:
-                self.ask_for_directions(client)
-                continue
-            if self.at_beacon:
-                self.arm_up()
-                print('Beacon picked up!')
+            # if self.blocked:
+            #     self.ask_for_directions(client)
+            #     continue
+            # if self.at_beacon:
+            #     self.arm_up()
+            #     print('Beacon picked up!')
+            #     self.at_beacon = False
             time.sleep(0.05)
 
     def go_to_beacon(self, speed, stop_action='brake'):
-        cm = self.bs.distance * (7 / 10)
-        inches = cm / 2.54
-        theta = (inches / (1.3 * math.pi)) * 360
+        # cm = self.bs.distance * (6 / 7)
+        inches = self.bs.distance * (7 / 10)
+        theta = (inches / math.pi) * 360
         self.left_motor.run_to_rel_pos(position_sp=theta, speed_sp=speed, stop_action=stop_action)
         self.right_motor.run_to_rel_pos(position_sp=theta, speed_sp=speed, stop_action=stop_action)
         self.left_motor.wait_while('running')
         self.at_beacon = True
+        self.arm_up()
