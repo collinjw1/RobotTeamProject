@@ -19,11 +19,11 @@ def main():
     speed_entry = ttk.Entry(main_frame, width=6)
     speed_entry.grid(row=1, column=0)
 
-    find_button = ttk.Button(main_frame, text='Find Beacon')
+    find_button = ttk.Button(main_frame, text='Point')
     find_button['command'] = lambda: send_find(client)
     find_button.grid(row=2, column=0)
 
-    drive_button = ttk.Button(main_frame, text='Drive To Beacon')
+    drive_button = ttk.Button(main_frame, text='Fetch')
     drive_button['command'] = lambda: send_drive(client, int(speed_entry.get()))
     drive_button.grid(row=3, column=0)
 

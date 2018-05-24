@@ -180,6 +180,7 @@ class Snatch3r(object):
         self.stop()
         if self.bs.distance < dist:
             while True:
+                self.spin_forever()
                 if self.bs.heading == 0:
                     self.stop()
                     print('Beacon found')
@@ -188,6 +189,7 @@ class Snatch3r(object):
             self.spin_forever(-400)
             time.sleep(2)
             self.stop()
+            print('Beacon found')
 
     def drive_until_obstacle(self, speed):
         self.drive(speed, speed)
