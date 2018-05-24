@@ -58,7 +58,6 @@ class Receiver(object):
 
         droot.mainloop()
 
-
     def touchdown(self, root, client):
         client.send_message('touchdown')
         root.destroy()
