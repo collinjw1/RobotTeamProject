@@ -107,7 +107,7 @@ def run_bases(num, root, client):
         client.send_message('run_bases3')
     elif num == 4:
         client.send_message('run_bases4')
-    root.destroy()
+    root.destroy() 
 
 player = BabeRuth()
 mqtt_client = com.MqttClient(player)
