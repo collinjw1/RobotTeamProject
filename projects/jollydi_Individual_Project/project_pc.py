@@ -40,7 +40,7 @@ def send_find(client):
 
 
 def send_drive(client, speed):
-    client.send_message('drive_until_obstacle', [speed * 8])
+    client.send_message('go_to_beacon', [speed * 8])
     print('Driving towards beacon')
 
 

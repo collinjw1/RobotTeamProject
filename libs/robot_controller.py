@@ -243,3 +243,12 @@ class Snatch3r(object):
                 self.arm_up()
                 print('Beacon picked up!')
             time.sleep(0.05)
+
+    def go_to_beacon(self, speed, stop_action='brake'):
+        cm = self.bs.distance * (7 / 10)
+        inches = cm / 2.54
+        theta = (inches / (1.3 * math.pi)) * 360
+        self.left_motor.run_to_rel_pos(position_sp=theta, speed_sp=speed, stop_action=stop_action)
+        self.right_motor.run_to_rel_pos(position_sp=theta, speed_sp=speed, stop_action=stop_action)
+        self.left_motor.wait_while('running')
+        self.at_beacon = True
