@@ -8,10 +8,11 @@ class Pc_delegate(object):
     def __init__(self):
         self.client = com.MqttClient()
         self.client.connect_to_ev3()
-        self.root = tkinter.Tk()
-        self.root.title('Directions')
+        self.root = None
 
     def give_directions(self):
+        self.root = tkinter.Tk()
+        self.root.title('Directions')
 
         main_frame = ttk.Frame(self.root, padding=20, relief='raised')
         main_frame.grid()
