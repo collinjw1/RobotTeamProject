@@ -183,6 +183,7 @@ class Snatch3r(object):
             if self.bs.distance < 5:
                 self.stop()
                 print('Beacon found')
+                self.arm_up()
                 break
             if self.ir_sensor.proximity < 10:
                 self.stop()
@@ -213,3 +214,9 @@ class Snatch3r(object):
         self.drive(400, 400)
         time.sleep(2.5)
         self.stop()
+
+    def shut_off(self):
+        self.stop()
+        self.arm_down()
+        self.arm_motor.wait_while('running')
+        self.running = False

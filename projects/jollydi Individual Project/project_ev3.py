@@ -7,7 +7,8 @@ def main():
     robot = robo.Snatch3r()
     mqtt_client = com.MqttClient(robot)
     mqtt_client.connect_to_pc()
-    while True:
+    robot.running = True
+    while robot.running:
         if robot.blocked:
             robot.ask_for_directions(mqtt_client)
             continue
