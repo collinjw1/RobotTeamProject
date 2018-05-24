@@ -15,7 +15,7 @@ def main():
 
 
 class Sammy_Sosa(object):
-    
+
     def swing_the_bat():
         robot.arm_up()
         time.sleep(3)
