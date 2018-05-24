@@ -164,7 +164,7 @@ class Snatch3r(object):
 # For Isaiah's Project
 ####################################################################
 
-    def spin_forever(self, speed=300):
+    def spin_forever(self, speed=400):
         self.left_motor.run_forever(speed_sp=speed)
         self.right_motor.run_forever(speed_sp=-speed)
 
