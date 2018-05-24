@@ -164,7 +164,7 @@ class Snatch3r(object):
 # For Isaiah's Project
 ####################################################################
 
-    def spin_forever(self, speed=300):
+    def spin_forever(self, speed=400):
         self.left_motor.run_forever(speed_sp=speed)
         self.right_motor.run_forever(speed_sp=-speed)
 
@@ -180,7 +180,7 @@ class Snatch3r(object):
     def drive_until_obstacle(self, speed):
         self.drive(speed, speed)
         while True:
-            if self.bs.distance < 5:
+            if self.bs.distance < 10:
                 self.stop()
                 print('Beacon found')
                 self.at_beacon = True
@@ -219,7 +219,6 @@ class Snatch3r(object):
         print('Quitting')
         self.stop()
         self.arm_down()
-        self.arm_motor.wait_while('running')
         self.running = False
 
     def loop(self, client):
