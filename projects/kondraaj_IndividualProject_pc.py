@@ -61,12 +61,12 @@ def up_to_bat():
 
 def run_bases(num, root, client):
     for k in range(num):
-        client.send_message('run_bases')
+        client.send_message('run_bases(self)')
     root.destroy()
 
 
 def swing_the_bat(root, client):
-    client.send_message('swing_the_bat')
+    client.send_message('swing_the_bat(self)')
     root.destroy()
 
 

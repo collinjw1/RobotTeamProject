@@ -16,11 +16,14 @@ def main():
 
 class Sammy_Sosa(object):
 
-    def swing_the_bat():
+    def swing_the_bat(self):
         robot.arm_up()
         time.sleep(3)
         robot.arm_down()
         mqtt_client.send_message('pitch')
+
+    def run_bases(self):
+        robot.run_bases()
 
 
 robot = robo.Snatch3r()
