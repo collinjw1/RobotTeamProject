@@ -15,29 +15,6 @@ class BabeRuth(object):
         self.ball = 0
         self.strike = 0
         self.out = 0
-        self.base_one = 'X'
-        self.base_two = 'X'
-        self.base_three = 'X'
-        self.home_plate = 'X'
-
-    def called_ball(self, root):
-        self.ball = self.ball + 1
-        if self.ball == 4:
-            self.ball = 0
-            self.strike = 0
-            run_bases(1, root, mqtt_client)
-
-    def called_strike(self):
-        self.strike = self.strike + 1
-        if self.strike == 3:
-            self.strike = 0
-            self.ball = 0
-            self.out = self.out + 1
-
-    def called_out(self):
-        self.out = self.out + 1
-        if self.out == 3:
-            game_over(root, client)
 
     def pitch(self):
         root = tkinter.Tk()
@@ -62,13 +39,13 @@ class BabeRuth(object):
 
         ball = ttk.Button(main_frame, text='Ball')
         ball.grid(row=2, column=0)
-        ball['command'] = lambda: called_ball(root)
+        ball['command'] = lambda: called_ball(self.ball)
         strike = ttk.Button(main_frame, text='Strike')
         strike.grid(row=2, column=1)
-        strike['command'] = lambda: called_strike()
+        strike['command'] = lambda: called_strike(self.strike)
         out = ttk.Button(main_frame, text='Out')
         out.grid(row=2, column=2)
-        out['command'] = lambda: called_out()
+        out['command'] = lambda: called_out(self.out)
         single = ttk.Button(main_frame, text='Single')
         single.grid(row=3, column=0)
         single['command'] = lambda: run_bases(1, root, mqtt_client)
@@ -82,16 +59,14 @@ class BabeRuth(object):
         home_run.grid(row=4, column=1)
         home_run['command'] = lambda: run_bases(4, root, mqtt_client)
 
-        first_base = ttk.Label(main_frame, text=self.base_one)
-        first_base.grid(row=2, column=6)
-        second_base = ttk.Label(main_frame, text=self.base_two)
-        second_base.grid(row=1, column=5)
-        third_base = ttk.Label(main_frame, text=self.base_three)
-        third_base.grid(row=2, column=4)
-        homeplate = ttk.Label(main_frame, text=self.home_plate)
-        homeplate.grid(row=3, column=5)
-
         root.mainloop()
+
+
+def main():
+    player = BabeRuth()
+    mqtt_client = com.MqttClient(player)
+    mqtt_client.connect_to_ev3()
+    player.pitch()
 
 
 def run_bases(num, root, client):
@@ -100,16 +75,19 @@ def run_bases(num, root, client):
     root.destroy()
 
 
-def game_over(root, client):
-    client.send_message('game')
-    root.destroy()
+def called_ball(ball):
+    ball = ball + 1
+    return ball
 
 
-def main():
-    player = BabeRuth()
-    mqtt_client = com.MqttClient(player)
-    mqtt_client.connect_to_ev3()
+def called_strike(strike):
+    strike = strike + 1
+    return strike
+
+
+def called_out(outs):
+    outs = outs + 1
+    return outs
 
 
 main()
-
