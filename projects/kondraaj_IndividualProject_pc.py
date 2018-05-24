@@ -12,7 +12,7 @@ import time
 
 class BabeRuth(object):
 
-     def __init__(self):
+    def __init__(self):
          self.ball = 0
          self.strike = 0
          self.out = 0
@@ -68,7 +68,7 @@ class BabeRuth(object):
 
          ball = ttk.Button(main_frame, text='Ball')
          ball.grid(row=2, column=0)
-         ball['command'] = lambda:
+         ball['command'] = lambda: 
          strike = ttk.Button(main_frame, text='Strike')
          strike.grid(row=2, column=1)
          strike['command'] = lambda:
@@ -100,23 +100,10 @@ class BabeRuth(object):
          root.mainloop()
 
 
-# player = BabeRuth()
-# mqtt_client = com.MqttClient(player)
-# mqtt_client.connect_to_ev3()
+player = BabeRuth()
+mqtt_client = com.MqttClient(player)
+mqtt_client.connect_to_ev3()
 
-def main():
-    ball = 0
-    strike = 0
-    out = 0
-    base_one = 'X'
-    base_two = 'X'
-    base_three = 'X'
-    home_plate = 'X'
-
-    gui(ball, strike, out, base_one, base_two, base_three, home_plate)
-
-
-def gui(ball, strike, out, base_one, base_two, base_three, home_plate):
 
 
 main()
