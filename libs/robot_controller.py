@@ -268,3 +268,12 @@ class Snatch3r(object):
                 self.stop()
                 self.turn_left(90, 50)
 
+    def ball(self):
+        ev3.Sound.speak("Ball").wait()
+
+    def strike(self):
+        ev3.Sound.speak("Strike").wait()
+
+    def out(self):
+        ev3.Sound.speak("Out").wait()
+

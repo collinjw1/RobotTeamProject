@@ -39,13 +39,13 @@ class BabeRuth(object):
 
         ball = ttk.Button(main_frame, text='Ball')
         ball.grid(row=2, column=0)
-        ball['command'] = lambda: called_ball(self.ball)
+        ball['command'] = lambda: called_ball(self.ball, root, mqtt_client)
         strike = ttk.Button(main_frame, text='Strike')
         strike.grid(row=2, column=1)
-        strike['command'] = lambda: called_strike(self.strike)
+        strike['command'] = lambda: called_strike(self.strike, root, mqtt_client)
         out = ttk.Button(main_frame, text='Out')
         out.grid(row=2, column=2)
-        out['command'] = lambda: called_out(self.out)
+        out['command'] = lambda: called_out(self.out, root, mqtt_client)
         single = ttk.Button(main_frame, text='Single')
         single.grid(row=3, column=0)
         single['command'] = lambda: run_bases(1, root, mqtt_client)
@@ -77,18 +77,24 @@ def run_bases(num, root, client):
     root.destroy()
 
 
-def called_ball(ball):
+def called_ball(ball, root, client):
     ball = ball + 1
+    client.send_message('ball')
+    root.destroy()
     return ball
 
 
-def called_strike(strike):
+def called_strike(strike, root, client):
     strike = strike + 1
+    client.send_message('strike')
+    root.destroy()
     return strike
 
 
-def called_out(outs):
+def called_out(outs, root, client):
     outs = outs + 1
+    client.send_message('out')
+    root.destroy()
     return outs
 
 
