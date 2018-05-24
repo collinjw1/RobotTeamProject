@@ -29,6 +29,21 @@ class BabeRuth(object):
             self.strike = 0
             self.base = self.base + 1
 
+    def called_strike(self):
+        self.strike = self.strike + 1
+        if self.strike == 3:
+            self.strike = 0
+            self.ball = 0
+            self.out = self.out + 1
+
+    def called_out(self):
+        self.out = self.out + 1
+        if self.out == 3:
+            game_over()
+
+    def called_single(self):
+        self.base = self.base + 1
+
 
      def pitch(self):
          root = tkinter.Tk()
