@@ -268,7 +268,7 @@ class Snatch3r(object):
                 self.stop()
                 self.turn_left(90, 50)
 
-    # def swing_the_bat(self):
-    #     self.arm_up()
-    #     self.arm_down()
+    def swing_the_bat(self):
+        self.arm_up()
+        self.arm_down()
 
