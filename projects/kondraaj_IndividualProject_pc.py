@@ -62,10 +62,12 @@ class BabeRuth(object):
         root.mainloop()
 
 
+player = BabeRuth()
+mqtt_client = com.MqttClient(player)
+mqtt_client.connect_to_ev3()
+
+
 def main():
-    player = BabeRuth()
-    mqtt_client = com.MqttClient(player)
-    mqtt_client.connect_to_ev3()
     player.pitch()
 
 

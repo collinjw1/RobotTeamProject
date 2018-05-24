@@ -13,4 +13,3 @@ def main():
     mqtt_client = com.MqttClient(robot)
     mqtt_client.connect_to_pc()
     robot.loop_forever()
-    robot.shutdown()
