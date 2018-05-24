@@ -7,7 +7,6 @@ Author: Aaron Kondrat.
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-import time
 
 
 class BabeRuth(object):
@@ -56,6 +55,8 @@ def up_to_bat():
     swing = ttk.Button(main_frame, text='Swing')
     swing.grid()
     swing['command'] = lambda: swing_the_bat(root, mqtt_client)
+
+    root.mainloop()
 
 
 def run_bases(num, root, client):

@@ -268,9 +268,7 @@ class Snatch3r(object):
                 self.stop()
                 self.turn_left(90, 50)
 
-    def swing_the_bat(self, speed=900):
-        self.arm_motor.run_forever(speed_sp=speed)
-        while True:
-            if self.touch_sens.is_pressed:
-                self.arm_down(speed=900)
+    def swing_the_bat(self):
+        self.arm_up()
+        self.arm_down()
 
