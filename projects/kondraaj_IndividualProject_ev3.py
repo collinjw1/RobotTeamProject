@@ -7,3 +7,5 @@ Author: Aaron Kondrat.
 import mqtt_remote_method_calls as com
 import robot_controller as robo
 import time
+
+def run_bases(num, )
