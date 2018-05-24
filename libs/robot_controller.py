@@ -221,6 +221,7 @@ class Snatch3r(object):
         self.stop()
         self.arm_down()
         self.arm_motor.wait_while('running')
+        self.client.close()
         self.running = False
 
     def loop(self):
