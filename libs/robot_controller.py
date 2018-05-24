@@ -29,8 +29,7 @@ class Snatch3r(object):
         self.ir_sensor = ev3.InfraredSensor()
         self.bs = ev3.BeaconSeeker(channel=1)
         self.blocked = False
-        self.client = com.MqttClient()
-        self.client.connect_to_pc()
+        self.at_beacon = False
 
         assert self.ir_sensor.connected
         assert self.left_motor.connected
@@ -184,7 +183,7 @@ class Snatch3r(object):
             if self.bs.distance < 5:
                 self.stop()
                 print('Beacon found')
-                self.arm_up()
+                self.at_beacon = True
                 break
             if self.ir_sensor.proximity < 10:
                 self.stop()
@@ -221,13 +220,15 @@ class Snatch3r(object):
         self.stop()
         self.arm_down()
         self.arm_motor.wait_while('running')
-        self.client.close()
         self.running = False
 
-    def loop(self):
+    def loop(self, client):
         self.running = True
         while self.running:
             if self.blocked:
-                self.ask_for_directions(self.client)
+                self.ask_for_directions(client)
                 continue
+            if self.at_beacon:
+                self.arm_up()
+                print('Beacon picked up!')
             time.sleep(0.05)
