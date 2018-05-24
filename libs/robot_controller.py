@@ -30,6 +30,7 @@ class Snatch3r(object):
         self.bs = ev3.BeaconSeeker(sensor=None, channel=1)
         self.blocked = False
         self.at_beacon = False
+        self.color_sensor = ev3.ColorSensor()
 
         assert self.ir_sensor.connected
         assert self.left_motor.connected
@@ -254,3 +255,16 @@ class Snatch3r(object):
         self.left_motor.wait_while('running')
         self.at_beacon = True
         self.arm_up()
+
+
+####################################################################
+# For Aaron's Project
+####################################################################
+
+    def run_bases(self):
+        self.drive(600, 600)
+        while True:
+            if self.color_sensor.reflected_light_intensity >= 85:
+                self.stop()
+                self.turn_left(90, 50)
+

@@ -7,19 +7,18 @@ Author: Aaron Kondrat.
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-import time
 
 
 class BabeRuth(object):
 
     def __init__(self):
-         self.ball = 0
-         self.strike = 0
-         self.out = 0
-         self.base_one = 'X'
-         self.base_two = 'X'
-         self.base_three = 'X'
-         self.home_plate = 'X'
+        self.ball = 0
+        self.strike = 0
+        self.out = 0
+        self.base_one = 'X'
+        self.base_two = 'X'
+        self.base_three = 'X'
+        self.home_plate = 'X'
 
     def called_ball(self, root):
         self.ball = self.ball + 1
@@ -38,10 +37,7 @@ class BabeRuth(object):
     def called_out(self):
         self.out = self.out + 1
         if self.out == 3:
-            game_over()
-
-    def called_single(self):
-        hello_there()
+            game_over(root, client)
 
     def pitch(self):
         root = tkinter.Tk()
@@ -99,18 +95,21 @@ class BabeRuth(object):
 
 
 def run_bases(num, root, client):
-    if num == 1:
-        client.send_message('run_bases1')
-    elif num == 2:
-        client.send_message('run_bases2')
-    elif num == 3:
-        client.send_message('run_bases3')
-    elif num == 4:
-        client.send_message('run_bases4')
-    root.destroy() 
+    for k in range(num):
+        client.send_message('run_bases')
+    root.destroy()
 
-player = BabeRuth()
-mqtt_client = com.MqttClient(player)
-mqtt_client.connect_to_ev3()
 
+def game_over(root, client):
+    client.send_message('game')
+    root.destroy()
+
+
+def main():
+    player = BabeRuth()
+    mqtt_client = com.MqttClient(player)
+    mqtt_client.connect_to_ev3()
+
+
+main()
 
