@@ -29,6 +29,8 @@ class Snatch3r(object):
         self.ir_sensor = ev3.InfraredSensor()
         self.bs = ev3.BeaconSeeker(channel=1)
         self.blocked = False
+        self.client = com.MqttClient()
+        self.client.connect_to_pc()
 
         assert self.ir_sensor.connected
         assert self.left_motor.connected
@@ -121,7 +123,6 @@ class Snatch3r(object):
         self.right_motor.stop()
         self.arm_motor.stop()
         self.running = False
-
 
     ##############################################################
     #  For Chio's Project
@@ -221,3 +222,11 @@ class Snatch3r(object):
         self.arm_down()
         self.arm_motor.wait_while('running')
         self.running = False
+
+    def loop(self):
+        self.running = True
+        while self.running:
+            if self.blocked:
+                self.ask_for_directions(self.client)
+                continue
+            time.sleep(0.05)
