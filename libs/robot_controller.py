@@ -266,7 +266,7 @@ class Snatch3r(object):
         while True:
             if self.color_sensor.reflected_light_intensity >= 85:
                 self.stop()
-                self.turn_left(90, 50)
+                self.turn_right(90, 50)
 
     def swing_the_bat(self):
         self.arm_up()

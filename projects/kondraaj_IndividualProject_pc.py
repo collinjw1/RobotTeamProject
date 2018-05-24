@@ -7,9 +7,13 @@ Author: Aaron Kondrat.
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
+import time
 
 
 class BabeRuth(object):
+
+    def __init__(self):
+        self.running = True
 
     def pitch(self):
         root = tkinter.Tk()
@@ -41,6 +45,8 @@ mqtt_client.connect_to_ev3()
 
 def main():
     up_to_bat()
+    while player.running:
+        time.sleep(0.01)
 
 
 def up_to_bat():
@@ -54,19 +60,19 @@ def up_to_bat():
     batter_up.grid()
     swing = ttk.Button(main_frame, text='Swing')
     swing.grid()
-    swing['command'] = lambda: swing_the_bat(root, mqtt_client)
+    swing['command'] = lambda: player.pitch()
 
     root.mainloop()
 
 
 def run_bases(num, root, client):
-    for k in range(num):
-        client.send_message('run_bases(self)')
+    client.send_message('run_bases', [num])
     root.destroy()
 
 
 def swing_the_bat(root, client):
-    client.send_message('swing_the_bat(self)')
+    print('swing')
+    client.send_message('run')
     root.destroy()
 
 

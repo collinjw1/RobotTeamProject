@@ -16,19 +16,15 @@ def main():
 
 class Sammy_Sosa(object):
 
-    def swing_the_bat(self):
-        robot.arm_up()
-        time.sleep(3)
-        robot.arm_down()
-        mqtt_client.send_message('pitch')
-
-    def run_bases(self):
-        robot.run_bases()
+    def run_bases(self, num):
+        for k in range(num):
+            robot.run_bases()
+            time.sleep(4)
 
 
 robot = robo.Snatch3r()
-pitcher = Sammy_Sosa
-mqtt_client = com.MqttClient(pitcher)
+batter = Sammy_Sosa()
+mqtt_client = com.MqttClient(batter)
 mqtt_client.connect_to_pc()
 
 
